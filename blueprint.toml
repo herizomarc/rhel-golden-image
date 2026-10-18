@@ -1,0 +1,63 @@
+name = "rhel9-proxmox-minimal-base"
+description = "Minimal Golden Image RHEL 9"
+version = "1.0.0"
+
+# ==========================================
+# Paquets essentiels (BaseOS/AppStream)
+# ==========================================
+[[packages]]
+name = "cloud-init"
+version = "*"
+
+[[packages]]
+name = "qemu-guest-agent"
+version = "*"
+
+[[packages]]
+name = "tar"
+version = "*"
+
+[[packages]]
+name = "rsync"
+version = "*"
+
+# ==========================================
+# Personnalisations système
+# ==========================================
+[customizations]
+[customizations.services]
+enabled = ["qemu-guest-agent", "cloud-init", "sshd"]
+
+[customizations.timezone]
+timezone = "Europe/Paris"
+
+[customizations.locale]
+languages = ["fr_FR.UTF-8"]
+keyboard = "fr"
+
+# =========================================================
+# SÉCURISATION DU PARTITIONNEMENT (BEST PRACTICES)
+# =========================================================
+[[customizations.filesystem]]
+mountpoint = "/"
+minsize = "5 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var"
+minsize = "4 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var/log"
+minsize = "2 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var/log/audit"
+minsize = "1 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/home"
+minsize = "2 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/tmp"
+minsize = "2 GiB"
