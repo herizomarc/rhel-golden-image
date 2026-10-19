@@ -26,8 +26,10 @@ build_image:
         if [ "$(ls -A ${SHARED_DIR} 2>/dev/null)" ]; then
           echo "Stale files discovered inside the shared directory. Purging them..."
           sudo rm -rf ${SHARED_DIR}/*
+          sudo chown -R gitlab-runner:gitlab-runner "${SHARED_DIR}"
         else
           echo "Shared directory is already empty."
+          sudo chown -R gitlab-runner:gitlab-runner "${SHARED_DIR}"
         fi
       fi
     - rm -f build.env
