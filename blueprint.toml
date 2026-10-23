@@ -35,6 +35,9 @@ timezone = "Europe/Paris"
 languages = ["fr_FR.UTF-8"]
 keyboard = "fr"
 
+[customizations.cloudconfig]
+package_upgrade = false
+
 # =========================================================
 # SÉCURISATION DU PARTITIONNEMENT (BEST PRACTICES)
 # =========================================================
